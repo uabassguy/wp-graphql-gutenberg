@@ -103,13 +103,17 @@ class BlockTypes {
 					'type' => $type,
 					'resolve' => function ($attributes, $args, $context, $info) use ($name, $default_value) {
 						$value = $attributes[$name] ?? $default_value;
-						return self::normalize_attribute_value($value, $attributes['__type'][$name]['type']);
+						return self::normalize_attribute_value($value, self::get_normalize_attributes_type($value));
 					}
 				];
 			}
 		}
 
 		return $fields;
+	}
+
+	protected static function get_normalize_attributes_type($value) {
+		return gettype($value);
 	}
 
 	protected static function normalize_attribute_name($name) {

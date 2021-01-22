@@ -75,7 +75,7 @@ class Block implements ArrayAccess {
 
 								$value = $value . $childNode->outerhtml;
 							}
-							
+
 							$result[$key] = $value;
 						} else {
 							$result[$key] = $source_node->innerhtml;
@@ -85,7 +85,7 @@ class Block implements ArrayAccess {
 
 					break;
 				case 'attribute':
-					$source_node = $value['selector'] ? $node->findOne($value['selector']) : $node;
+					$source_node = isset($value['selector']) ? $node->findOne($value['selector']) : $node;
 
 					if ($source_node) {
 						$result[$key] = $source_node->getAttribute($value['attribute']);
